@@ -15,7 +15,7 @@ const BookList = () => {
 
     return (
         <div>
-            <h1>Books</h1>
+            <h1>Nos ouvrages</h1>
 
             {data.map(book => (
                 <h2 key={book.id}>{book.displayTitle}</h2>
