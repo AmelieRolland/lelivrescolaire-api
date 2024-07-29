@@ -4,7 +4,7 @@ import { allBooks } from '../data/api';
 
 const BookList = () => {
     const { data } = useQuery({
-        queryKey: 'allBooks',
+        queryKey: ['allBooks'],
         queryFn: allBooks,
     });
     if (!data) {
