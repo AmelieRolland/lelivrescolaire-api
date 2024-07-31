@@ -1,14 +1,18 @@
 import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import BookList from './components/Booklist.js';
+import Header from './components/Header.js';
 
 const queryClient = new QueryClient();
 
 const App = () => {
   return (
+
     <QueryClientProvider client={queryClient}>
+    
       <div className="App">
-        <h1>Le Livre Scolaire</h1>
+        
+          <Header />
         <BookList />
       </div>
     </QueryClientProvider>
