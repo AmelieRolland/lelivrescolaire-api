@@ -42,7 +42,10 @@ const Chapterslist = () => {
     return (
         <>
             <Header />
-            <h1>Les chapitres</h1>
+
+            <div className='container w-4/5 mx-auto'>
+
+            <h1 className='permanent-marker text-3xl py-16'>Tous les chapitres</h1>
 
             <div className=" w-full mx-auto flex flex-row flex-wrap">
 
@@ -76,6 +79,7 @@ const Chapterslist = () => {
 
 
                 ))}
+            </div>
             </div>
 
 
