@@ -31,7 +31,7 @@ const CHAPTERS = gql`
                 hits{
                 id 
                 title 
-                url 
+                urlLite 
                 valid
                 }
             }
@@ -39,7 +39,7 @@ const CHAPTERS = gql`
     }`;
 
 
-    const SCHOOLTYPES = gql`
+const SCHOOLTYPES = gql`
     query {
       viewer {
         schoolTypes {
@@ -50,14 +50,28 @@ const CHAPTERS = gql`
       }
     }
   `;
-  
-  const LEVELS = gql`
+
+const LEVELS = gql`
     query {
       viewer {
         levels{
           name
           isElementarySchool
           isPreSchool
+        }
+      }
+    }
+  `;
+
+const LESSONS = gql`
+    query ($chapterId:Int){
+      viewer{
+        pages (chapterIds:[$chapterId]) {
+          hits{
+            id
+            title
+            content
+            }
         }
       }
     }
@@ -87,6 +101,18 @@ export const allChapters = async (id) => {
   }
 };
 
+export const allLessons = async (id) => {
+  try {
+    const idInt = parseInt(id);
+    const dataLessons = await request(endpoint, LESSONS, {
+      chapterId: idInt
+    });
+    return dataLessons.viewer.pages.hits;
+  } catch(e) {
+    throw new Error("Erreur lors du chargement des leçons" + e)
+  }
+};
+
 export const allLevels = async () => {
   try {
     const dataLevels = await request(endpoint, LEVELS);
@@ -102,4 +128,5 @@ export const allSchoolTypes = async () => {
     return dataSchool.viewer.schoolTypes.hits;
   } catch (e) {
     throw new Error("Erreur lors du chargement des écoles" + e);
-  }}
+  }
+}

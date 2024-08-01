@@ -38,11 +38,11 @@ const BookList = () => {
                 <div className="w-full mx-auto flex flex-row flex-wrap justify-between">
 
                     {filteredBooks.map((book) => (
-                        <div key={book.id} className={" max-w-sm w-80 m-4 h-50 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" + (book.valid === true ? ' bg-white' : ' hidden')}>
+                        <div key={book.id} className={"w-80 max-w-sm card m-4 h-50 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" + (book.valid === true ? ' bg-white' : ' hidden')}>
 
                             <div className="p-5 w-full flex flex-row h-full">
                                 <div>
-                                    <img src={book.urlLite} alt={book.displayTitle} />
+                                    <img src={book.urlLite} alt={book.displayTitle}  />
                                 </div>
                                 <div className='flex w-full flex-col justify-between h-full'>
                                     <div>

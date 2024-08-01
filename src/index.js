@@ -8,6 +8,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Chapters from './components/Chapters';
+import Lessons from './components/LessonsList';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "book/:bookId",
     element: <Chapters />,
+  },
+  {
+    path: "chapitres/:chapterId",
+    element: <Lessons />,
   },
 ]);
 
