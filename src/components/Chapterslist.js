@@ -1,28 +1,17 @@
 import { React, useEffect, useState, Image } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import { allChapters } from '../data/api';
 import { useParams } from 'react-router';
-import { Booklist } from './Booklist'
 import Header from './Header';
-import LessonsList from './LessonsList'
 import './chaptersList.css'
 import 'flowbite';
-import Lessons from './LessonsList';
-
-
 
 
 const Chapterslist = () => {
-
-
     const { bookId } = useParams();
 
     const [dataChapters, setDataChapters] = useState([])
     const [isLoading, setIsLoading] = useState(false);
     const [expandedChapterId, setExpandedChapterId] = useState(null);
-
-
-
 
     const fetchChapters = async () => {
         setIsLoading(true)
@@ -32,36 +21,26 @@ const Chapterslist = () => {
         } catch (e) {
             throw new Error("Erreur au chargement: ", e)
         }
-
     }
-
 
     useEffect(() => {
 
         fetchChapters();
-
         setIsLoading(false);
 
     }, [bookId])
 
     console.log(dataChapters);
 
-
-    if (isLoading) {
-        return <p>En attente des chapitres</p>
-    }
-
-
-
     const toggleChapter = (chapterId) => {
         setExpandedChapterId(expandedChapterId === chapterId ? null : chapterId);
     };
 
-
-
-
-
-
+    if(isLoading){
+        return <p>En attente des manuels</p>
+    }else if(dataChapters === null || dataChapters.length === 0){
+        return <p>Oups! Aucuns chapitres disponibles pour le moment</p>
+    }
 
     return (
         <>
@@ -101,19 +80,10 @@ const Chapterslist = () => {
                             </div>
                         </>
 
-
-
                     ))}
                 </div>
 
             </div>
-
-
-
-
-
-
-
         </>
     )
 }
