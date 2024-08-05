@@ -13,6 +13,7 @@ const ALL_BOOKS = gql`
           urlLite
           subjects {
             name
+            schoolTypes
           }
           levels {
             name
