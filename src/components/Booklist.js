@@ -6,6 +6,8 @@ import './Booklist.css';
 
 const BookList = () => {
     const [selectedLevel, setSelectedLevel] = useState();
+    const [isLoading, setIsLoading] = useState(false);
+
 
     const { data: books } = useQuery({
         queryKey: ['allBooks'],
@@ -22,11 +24,14 @@ const BookList = () => {
     ) : books;
 
 
-
-    if (!books) {
+    if (isLoading) {
         return (
             <p>En attente du chargement</p>
         );
+    } else if (!Array.isArray(books) || books.length === 0 ){
+        return (
+            <p>Oups! Aucuns livres disponibles pour le moment</p>
+        )
     }
 
     return (
