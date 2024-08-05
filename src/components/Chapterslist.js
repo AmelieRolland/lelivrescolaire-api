@@ -34,7 +34,6 @@ const Chapterslist = () => {
         }
 
     }
-    // const chapterId = dataChapters.id
 
 
     useEffect(() => {
@@ -48,17 +47,11 @@ const Chapterslist = () => {
     console.log(dataChapters);
 
 
-    if (!dataChapters) {
+    if (isLoading) {
         return <p>En attente des chapitres</p>
     }
 
-    // const logItem = () => {
-    // const body = document.getElementById('accordion-body');
-    // body.toggleAttribute("hidden");
-    // }
 
-    // const header = document.getElementById('accordion-header');
-    // header.addEventListener("toggle", logItem());
 
     const toggleChapter = (chapterId) => {
         setExpandedChapterId(expandedChapterId === chapterId ? null : chapterId);
@@ -85,20 +78,21 @@ const Chapterslist = () => {
 
                             <div key={chapter.id} id="accordion" >
                                 <h2 id="accordion-header">
-                                    <button type="button" class="flex items-center focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 justify-between p-5 w-full font-medium text-left border border-gray-200 dark:border-gray-700 border-b-0 text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-t-xl" 
+                                    <button type="button" class="flex items-center  justify-between p-5 w-full font-medium text-left border border-gray-200  border-b-0 text-gray-900 dark:text-white bg-white d hover:bg-blue-300 focus:bg-blue-100 rounded-t-xl" 
                                     onClick={() => toggleChapter(chapter.id)}
                                     aria-expanded={expandedChapterId === chapter.id}
                                     aria-controls={`accordion-body-${chapter.id}`}>
-                                        <span class="flex items-center">{chapter.title}</span>
+                                        <span class="flex items-center"><strong>{chapter.title}</strong></span>
 
                                     </button>
                                 </h2>
                                 <div id={`accordion-body-${chapter.id}`}
                                     aria-labelledby={`accordion-header-${chapter.id}`}
-                                    className={expandedChapterId === chapter.id ? 'block' : 'hidden'} >
-                                    <div class=" border border-gray-200  border-b-0">
+                                    className={`transition-max-height duration-500 ease-in-out overflow-hidden ${expandedChapterId === chapter.id ? 'max-h-screen' : 'max-h-0'}`}>
+                                    
+                                    <div class="bg-blue-100 border border-gray-200  border-b-0">
                                         {chapter.pages.map(lesson => (
-                                            <button type='button' className='ps-5 py-2.5 bg-white w-full text-left'>{lesson.title}</button>
+                                            <button type='button' className='ps-5 py-2.5 bg-blue-100 w-full text-left'>{lesson.title}</button>
                                         ))}
 
                                     </div>
