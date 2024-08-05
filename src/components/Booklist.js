@@ -36,7 +36,7 @@ const BookList = () => {
 
     return (
         <>
-            <LevelsList onSelectLevel={handleSelectLevel} />
+            {/* <LevelsList onSelectLevel={handleSelectLevel} /> */}
 
             <div className='container mx-auto px-4'>
                 <h1 className='permanent-marker text-3xl py-16'>Nos ouvrages {selectedLevel} :</h1>
