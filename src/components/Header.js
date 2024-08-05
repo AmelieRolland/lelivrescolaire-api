@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SchoolTypesList from './SchoolTypesList';
 
 const Header = () => {
 
@@ -7,7 +8,7 @@ const Header = () => {
   const handleSubMenuToggle = () => {
     setIsSubMenuOpen(!isSubMenuOpen);
   };
-  
+
   return (
 
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
@@ -31,6 +32,7 @@ const Header = () => {
                 <div className="flex">
                   <div className="w-1/3 p-2">
                     <h3 className="text-lg ">Niveau</h3>
+                    <SchoolTypesList />
                   </div>
                   <div className="w-2/3 p-2">
                     <h3 className="text-lg ">Matière</h3>

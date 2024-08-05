@@ -46,6 +46,7 @@ const SCHOOLTYPES = gql`
       viewer {
         schoolTypes {
           hits {
+            id
             name
           }
         }
