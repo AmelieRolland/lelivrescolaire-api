@@ -4,13 +4,25 @@ import { allChapters } from '../data/api';
 import { useParams } from 'react-router';
 import { Booklist } from './Booklist'
 import Header from './Header';
+import LessonsList from './LessonsList'
+import './chaptersList.css'
+import 'flowbite';
+import Lessons from './LessonsList';
+
+
 
 
 const Chapterslist = () => {
+
+
     const { bookId } = useParams();
 
     const [dataChapters, setDataChapters] = useState([])
     const [isLoading, setIsLoading] = useState(false);
+    const [expandedChapterId, setExpandedChapterId] = useState(null);
+
+
+
 
     const fetchChapters = async () => {
         setIsLoading(true)
@@ -22,6 +34,8 @@ const Chapterslist = () => {
         }
 
     }
+    // const chapterId = dataChapters.id
+
 
     useEffect(() => {
 
@@ -31,10 +45,28 @@ const Chapterslist = () => {
 
     }, [bookId])
 
+    console.log(dataChapters);
+
 
     if (!dataChapters) {
         return <p>En attente des chapitres</p>
     }
+
+    // const logItem = () => {
+    // const body = document.getElementById('accordion-body');
+    // body.toggleAttribute("hidden");
+    // }
+
+    // const header = document.getElementById('accordion-header');
+    // header.addEventListener("toggle", logItem());
+
+    const toggleChapter = (chapterId) => {
+        setExpandedChapterId(expandedChapterId === chapterId ? null : chapterId);
+    };
+
+
+
+
 
 
 
@@ -42,42 +74,50 @@ const Chapterslist = () => {
         <>
             <Header />
 
-            <div className='container w-4/5 mx-auto'>
+            <div className='container mx-12'>
 
                 <h1 className='permanent-marker text-3xl py-16'>Tous les chapitres</h1>
 
-                <div className=" w-full mx-auto flex flex-row flex-wrap">
+                <div className=" w-2/5 flex flex-col">
 
                     {dataChapters.map(chapter => (
+                        <>
 
-                        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                            <a href="#">
-                                <img class="rounded-t-lg" src={chapter.urlLite} alt={chapter.title} />
-                            </a>
-                            <div class="p-5 flex flex-col content-between">
-                                <div className=''>
-                                    <a href={`/chapitres/${chapter.id}`}>
-                                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{chapter.title}</h5>
-                                    </a>
+                            <div key={chapter.id} id="accordion" >
+                                <h2 id="accordion-header">
+                                    <button type="button" class="flex items-center focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 justify-between p-5 w-full font-medium text-left border border-gray-200 dark:border-gray-700 border-b-0 text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-t-xl" 
+                                    onClick={() => toggleChapter(chapter.id)}
+                                    aria-expanded={expandedChapterId === chapter.id}
+                                    aria-controls={`accordion-body-${chapter.id}`}>
+                                        <span class="flex items-center">{chapter.title}</span>
+
+                                    </button>
+                                </h2>
+                                <div id={`accordion-body-${chapter.id}`}
+                                    aria-labelledby={`accordion-header-${chapter.id}`}
+                                    className={expandedChapterId === chapter.id ? 'block' : 'hidden'} >
+                                    <div class=" border border-gray-200  border-b-0">
+                                        {chapter.pages.map(lesson => (
+                                            <button type='button' className='ps-5 py-2.5 bg-white w-full text-left'>{lesson.title}</button>
+                                        ))}
+
+                                    </div>
                                 </div>
-                                <div className='place-self-end'>
-                                    <a href={`/chapitres/${chapter.id}`} class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                        Voir les leçons
-                                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                                        </svg>
-                                    </a>
-                                </div>
+
                             </div>
-                        </div>
-
-
+                        </>
 
 
 
                     ))}
                 </div>
+
             </div>
+
+
+
+
+
 
 
         </>

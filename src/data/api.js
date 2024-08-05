@@ -33,6 +33,7 @@ const CHAPTERS = gql`
                 title 
                 urlLite 
                 valid
+                pages{title}
                 }
             }
         }
@@ -71,6 +72,7 @@ const LESSONS = gql`
             id
             title
             content
+            chapter{id}
             }
         }
       }

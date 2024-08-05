@@ -25,7 +25,7 @@ const LevelsList = ({ onSelectLevel }) => {
             {filteredLevels.map((level) => (
                 <button
                     type="button"
-                    className="hover:bg-white hover:text-yellow-500 text-white bg-yellow-400 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium text-sm px-5 py-4 text-center me-2 "
+                    className="hover:bg-white hover:text-yellow-500 text-white bg-yellow-400  font-medium text-sm px-5 py-4 text-center me-2 "
                     onClick={() => onSelectLevel(level.name)}
                 >
                     {level.name}

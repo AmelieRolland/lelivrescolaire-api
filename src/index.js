@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import Chapters from './components/Chapters';
 import Lessons from './components/LessonsList';
+import 'flowbite';
 
 const router = createBrowserRouter([
   {
