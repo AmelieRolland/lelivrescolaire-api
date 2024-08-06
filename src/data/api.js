@@ -87,6 +87,7 @@ const LESSONS = gql`
     subjects{
       hits{ 
         name
+        hasBooks
         schoolTypes}
     }
   }

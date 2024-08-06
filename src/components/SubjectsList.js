@@ -17,8 +17,11 @@ const SubjectsList = () => {
 
     console.log(selectedSchoolType);
 
-    const filteredSubjects = selectedSchoolType ? subjects.filter((subject) =>
-        subject.schoolTypes.find((schoolType) => schoolType.includes(selectedSchoolType))) : subjects;
+    const selectSubjects = selectedSchoolType ? subjects.filter((subject) =>
+        subject.schoolTypes.find((schoolType) => schoolType.includes(selectedSchoolType)
+    )) : subjects;
+
+    const filteredSubjects = selectSubjects.filter(subject => (subject.hasBooks === true))
 
     if (isLoading) {
         return (
