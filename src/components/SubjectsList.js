@@ -15,14 +15,10 @@ const SubjectsList = () => {
     const handleSelectSchoolType = (schoolType) =>
         setSelectedSchoolType(schoolType);
 
-    console.log(selectedSchoolType);
-
     const filteredSubjects = selectedSchoolType ? subjects.filter(
         (subject) =>
         (subject.schoolTypes.find((schoolType) => schoolType.includes(selectedSchoolType)) && (subject.hasBooks === true)
     )) : subjects;
-
-    // const filteredSubjects = selectSubjects.filter(selectSubject => selectSubject.hasBooks === true);
 
     if (isLoading) {
         return (

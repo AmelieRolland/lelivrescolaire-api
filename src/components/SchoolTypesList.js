@@ -12,7 +12,7 @@ const SchoolTypesList = ({onSelectSchoolType}) => {
     });
     if (isLoading) {
         return <p>En attente de chargement</p>;
-    } else if (!dataSchool || dataSchool.length === 0) {
+    } else if (dataSchool?.length === 0) {
         return <p>Oups! Aucun niveau disponible</p>
     }
 

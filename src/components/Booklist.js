@@ -15,7 +15,7 @@ const BookList = () => {
         return (
             <p>En attente du chargement</p>
         );
-    } else if (!books || books.length === 0 ){
+    } else if (books?.length === 0 ){
         return (
             <p>Oups! Aucun livre disponible pour le moment</p>
         )
@@ -29,7 +29,7 @@ const BookList = () => {
                     {books.map((book) => (
                         <div key={book.id} className={"group flex flex-row transition duration-700 ease-in-out max-w-full h-auto border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700" + (book.valid === true ? ' bg-white' : ' hidden')}>
                             <div className="flex-shrink-0 w-1/3">
-                                <img src={book.urlLite ? book.urlLite : genericImageUrl} alt={book.displayTitle} className="w-full h-full object-contain rounded-l-lg transform transition-transform duration-700 ease-in-out group-hover:rotate-6" />
+                                <img src={book.urlLite ?? genericImageUrl} alt={book.displayTitle} className="w-full h-full object-contain rounded-l-lg transform transition-transform duration-700 ease-in-out group-hover:rotate-6" />
                             </div>
                             <div className='flex flex-col justify-between p-4 w-2/3'>
                                 <div>
