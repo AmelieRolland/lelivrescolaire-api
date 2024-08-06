@@ -9,10 +9,8 @@ const BookList = () => {
     const genericImageUrl ='/img/book.png';
 
     const [selectedLevel, setSelectedLevel] = useState();
-    const [isLoading, setIsLoading] = useState(false);
 
-
-    const { data: books } = useQuery({
+    const { data: books, isLoading} = useQuery({
         queryKey: ['allBooks'],
         queryFn: allBooks,
     });

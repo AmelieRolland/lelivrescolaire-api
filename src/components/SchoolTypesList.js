@@ -4,23 +4,16 @@ import { allSchoolTypes } from '../data/api';
 
 const SchoolTypesList = () => {
 
-    const [isLoading, setIsLoading] = useState(true);
-
-    const { data: dataSchool } = useQuery({
+    const { data: dataSchool, isLoading} = useQuery({
         queryKey: ['allSchoolTypes'],
         queryFn: allSchoolTypes
 
     });
-    
-
-
     console.log(dataSchool)
 
-    // if (isLoading) {
-    //     return <p>En attente de chargement</p>;
-    // } 
-    // else 
-    if (!dataSchool || dataSchool.length === 0) {
+    if (isLoading) {
+        return <p>En attente de chargement</p>;
+    } else if (!dataSchool || dataSchool.length === 0) {
         return <p>Oups! Aucun niveau disponible</p>
     }
 

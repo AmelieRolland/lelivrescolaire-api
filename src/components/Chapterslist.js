@@ -18,15 +18,16 @@ const Chapterslist = () => {
         try {
             const dataChapters = await allChapters(bookId);
             setDataChapters(dataChapters)
+            setIsLoading(false)
+
         } catch (e) {
             throw new Error("Erreur au chargement: ", e)
         }
+
     }
 
     useEffect(() => {
-
         fetchChapters();
-        setIsLoading(false);
 
     }, [bookId])
 
