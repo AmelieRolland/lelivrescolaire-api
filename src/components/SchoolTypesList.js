@@ -9,8 +9,6 @@ const SchoolTypesList = ({onSelectSchoolType}) => {
         queryFn: allSchoolTypes
 
     });
-    console.log(dataSchool)
-
     if (isLoading) {
         return <p>En attente de chargement</p>;
     } else if (!dataSchool || dataSchool.length === 0) {
@@ -23,7 +21,7 @@ const SchoolTypesList = ({onSelectSchoolType}) => {
                 <ul>
                     <li>
                         <button type='button'
-                        // onClick={() => onSelectSchoolType(school.name)}
+                        onClick={() => onSelectSchoolType(school.name)}
                         >
                             {school.name}
                         </button>

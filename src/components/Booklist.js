@@ -7,22 +7,10 @@ const BookList = () => {
 
     const genericImageUrl ='/img/book.png';
 
-    const [selectedLevel, setSelectedLevel] = useState();
-
     const { data: books, isLoading} = useQuery({
         queryKey: ['allBooks'],
         queryFn: allBooks,
     });
-
-    const handleSelectLevel = (level) => {
-        setSelectedLevel(level);
-    };
-    console.log(selectedLevel);
-
-    const filteredBooks = selectedLevel ? books.filter((book) =>
-        book.levels.find((level) => level.name === selectedLevel)
-    ) : books;
-
 
     if (isLoading) {
         return (
@@ -37,9 +25,9 @@ const BookList = () => {
     return (
         <>
             <div className='container mx-auto px-4'>
-                <h1 className='permanent-marker text-3xl py-16'>Nos ouvrages {selectedLevel} :</h1>
+                <h1 className='permanent-marker text-3xl py-16'>Nos ouvrages  :</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {filteredBooks.map((book) => (
+                    {books.map((book) => (
                         <div key={book.id} className={"group flex flex-row transition duration-700 ease-in-out max-w-full h-auto border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700" + (book.valid === true ? ' bg-white' : ' hidden')}>
                             <div className="flex-shrink-0 w-1/3">
                                 <img src={book.urlLite ? book.urlLite : genericImageUrl} alt={book.displayTitle} className="w-full h-full object-contain rounded-l-lg transform transition-transform duration-700 ease-in-out group-hover:rotate-6" />
