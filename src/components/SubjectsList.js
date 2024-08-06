@@ -17,11 +17,12 @@ const SubjectsList = () => {
 
     console.log(selectedSchoolType);
 
-    const selectSubjects = selectedSchoolType ? subjects.filter((subject) =>
-        subject.schoolTypes.find((schoolType) => schoolType.includes(selectedSchoolType)
+    const filteredSubjects = selectedSchoolType ? subjects.filter(
+        (subject) =>
+        (subject.schoolTypes.find((schoolType) => schoolType.includes(selectedSchoolType)) && (subject.hasBooks === true)
     )) : subjects;
 
-    const filteredSubjects = selectSubjects.filter(subject => (subject.hasBooks === true))
+    // const filteredSubjects = selectSubjects.filter(selectSubject => selectSubject.hasBooks === true);
 
     if (isLoading) {
         return (
@@ -37,14 +38,14 @@ const SubjectsList = () => {
         <>
 
             <div className="flex">
-                <div className="w-1/3 p-2">
-                    <h3 className="text-lg ">Niveau</h3>
+                <div className="w-1/3 p-10 border-r">
+                    <h3 className="text-lg pb-6 ">Niveau</h3>
                     <SchoolTypesList onSelectSchoolType={handleSelectSchoolType} />
                 </div>
-                <div className="w-2/3 p-2">
-                    <h3 className="text-lg ">Matière</h3>
+                <div className="w-2/3 p-10">
+                    <h3 className="text-lg pb-6">Matière</h3>
                     {filteredSubjects.map((subject) =>
-                        <p>{subject.name}</p>)}
+                        <p className='p-4'>{subject.name}</p>)}
 
                 </div>
 

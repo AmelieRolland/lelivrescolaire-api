@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { allSchoolTypes } from '../data/api';
 
+
 const SchoolTypesList = ({onSelectSchoolType}) => {
 
     const { data: dataSchool, isLoading} = useQuery({
@@ -18,10 +19,11 @@ const SchoolTypesList = ({onSelectSchoolType}) => {
     return (
         <>
             {dataSchool.map(school =>(
-                <ul>
+                <ul className='ps-4'>
                     <li>
                         <button type='button'
-                        onClick={() => onSelectSchoolType(school.name)}
+                        className='hover:bg-blue-200 hover:font-bold p-3 w-full rounded-lg text-left'
+                        onMouseOver={() => onSelectSchoolType(school.name)}
                         >
                             {school.name}
                         </button>
