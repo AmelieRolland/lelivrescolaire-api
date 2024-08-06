@@ -8,9 +8,14 @@ import 'flowbite';
 const queryClient = new QueryClient();
 
 const App = () => {
+
+
   return (
 
-    <QueryClientProvider client={queryClient}>
+    <QueryClientProvider 
+    genericImageUrl ='/img/book.png' 
+    client={queryClient}>
+      
     
       <div className="App">
         

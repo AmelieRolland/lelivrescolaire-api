@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { allBooks } from '../data/api';
 
-const BookList = () => {
-
-    const genericImageUrl ='/img/book.png';
+const BookList = (genericImageUrl) => {
 
     const { data: books, isLoading} = useQuery({
         queryKey: ['allBooks'],
