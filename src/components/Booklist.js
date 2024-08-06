@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { allBooks } from '../data/api';
-import LevelsList from './LevelsList';
 import './Booklist.css';
 
 const BookList = () => {

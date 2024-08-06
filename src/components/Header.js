@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SchoolTypesList from './SchoolTypesList';
+import SubjectsList from './SubjectsList';
 
 const Header = () => {
 
@@ -8,6 +9,7 @@ const Header = () => {
   const handleSubMenuToggle = () => {
     setIsSubMenuOpen(!isSubMenuOpen);
   };
+  
 
   return (
 
@@ -36,6 +38,9 @@ const Header = () => {
                   </div>
                   <div className="w-2/3 p-2">
                     <h3 className="text-lg ">Matière</h3>
+                    <SubjectsList 
+                    // onSelectLevel={handleSelectSchoolType} 
+                    />
                   </div>
                 </div>
 

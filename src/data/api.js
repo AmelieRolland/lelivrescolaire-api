@@ -80,7 +80,17 @@ const LESSONS = gql`
       }
     }
   `;
-
+  
+  const SUBJECTS = gql`
+  query {
+  viewer{
+    subjects{
+      hits{ 
+        name
+        schoolTypes}
+    }
+  }
+}`;
 
 
 
@@ -130,6 +140,15 @@ export const allSchoolTypes = async () => {
   try {
     const dataSchool = await request(endpoint, SCHOOLTYPES);
     return dataSchool.viewer.schoolTypes.hits;
+  } catch (e) {
+    throw new Error("Erreur lors du chargement des écoles" + e);
+  }
+}
+
+export const allSubjects = async () => {
+  try {
+    const dataSubjects = await request(endpoint, SUBJECTS);
+    return dataSubjects.viewer.subjects.hits;
   } catch (e) {
     throw new Error("Erreur lors du chargement des écoles" + e);
   }

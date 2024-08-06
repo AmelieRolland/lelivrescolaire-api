@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { allSchoolTypes } from '../data/api';
 
-const SchoolTypesList = () => {
+const SchoolTypesList = ({onSelectSchoolType}) => {
 
     const { data: dataSchool, isLoading} = useQuery({
         queryKey: ['allSchoolTypes'],
@@ -22,7 +22,9 @@ const SchoolTypesList = () => {
             {dataSchool.map(school =>(
                 <ul>
                     <li>
-                        <button type='button'>
+                        <button type='button'
+                        // onClick={() => onSelectSchoolType(school.name)}
+                        >
                             {school.name}
                         </button>
                     </li>
