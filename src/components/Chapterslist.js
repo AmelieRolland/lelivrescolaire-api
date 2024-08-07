@@ -54,20 +54,13 @@ const Chapterslist = () => {
 
             <div className='container mx-12'>
 
-
                 <h1 className='permanent-marker text-3xl py-16'>Tous les chapitres</h1>
-
 
                 <div className='flex flex-row'>
 
-
                     <div className=" w-2/5 pr-6">
 
-
-
-
                         {dataChapters.map(chapter => (
-
 
                             <div key={chapter.id} id="accordion" >
                                 <h2 id="accordion-header">
@@ -108,10 +101,7 @@ const Chapterslist = () => {
                         }
                     </div>
 
-
-
                 </div>
-
 
             </div>
         </>
