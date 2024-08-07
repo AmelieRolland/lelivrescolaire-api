@@ -1,35 +1,25 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { allBooks } from '../data/api';
-import LevelsList from './LevelsList';
-import './Booklist.css';
 
-const BookList = () => {
+const genericImageUrl ='/img/book.png';
 
-    const genericImageUrl ='/img/book.png';
-
-    const [selectedLevel, setSelectedLevel] = useState();
+const BookList = ({ selectedSubject }) => {
 
     const { data: books, isLoading} = useQuery({
         queryKey: ['allBooks'],
         queryFn: allBooks,
     });
 
-    const handleSelectLevel = (level) => {
-        setSelectedLevel(level);
-    };
-    console.log(selectedLevel);
-
-    const filteredBooks = selectedLevel ? books.filter((book) =>
-        book.levels.find((level) => level.name === selectedLevel)
-    ) : books;
-
+    const filteredBooks = selectedSubject ? books.filter((book) => 
+    book.subjects.find((subject) => subject.name === selectedSubject )
+) : books;
 
     if (isLoading) {
         return (
             <p>En attente du chargement</p>
         );
-    } else if (!books || books.length === 0 ){
+    } else if (books?.length === 0 ){
         return (
             <p>Oups! Aucun livre disponible pour le moment</p>
         )
@@ -38,7 +28,7 @@ const BookList = () => {
     return (
         <>
             <div className='container mx-auto px-4'>
-                <h1 className='permanent-marker text-3xl py-16'>Nos ouvrages {selectedLevel} :</h1>
+                <h1 className='permanent-marker text-3xl py-16'>Nos ouvrages  :</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredBooks.map((book) => (
                         <div key={book.id} className={"group flex flex-row transition duration-700 ease-in-out max-w-full h-auto border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700" + (book.valid === true ? ' bg-white' : ' hidden')}>

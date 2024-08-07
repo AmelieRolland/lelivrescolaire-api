@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import SchoolTypesList from './SchoolTypesList';
+import SubjectsList from './SubjectsList';
 
-const Header = () => {
+const Header = ({ onSelectSubject }) => {
 
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
 
@@ -29,16 +30,8 @@ const Header = () => {
 
               <div className={`z-10 transition-max-height duration-500 ease-in-out nav-blue w-full p-4 absolute top-16 left-0 right-0 mx-auto border border-gray-100 rounded-lg shadow-lg ${isSubMenuOpen ? 'block' : 'hidden'}`}>
 
-                <div className="flex">
-                  <div className="w-1/3 p-2">
-                    <h3 className="text-lg ">Niveau</h3>
-                    <SchoolTypesList />
-                  </div>
-                  <div className="w-2/3 p-2">
-                    <h3 className="text-lg ">Matière</h3>
-                  </div>
-                </div>
-
+              <SubjectsList onSelectSubject={onSelectSubject} />
+                
               </div>
             </li>
 

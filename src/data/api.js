@@ -80,16 +80,27 @@ const LESSONS = gql`
       }
     }
   `;
-
+  
+  const SUBJECTS = gql`
+  query {
+  viewer{
+    subjects{
+      hits{ 
+        name
+        hasBooks
+        schoolTypes}
+    }
+  }
+}`;
 
 
 
 export const allBooks = async () => {
   try {
     const data = await request(endpoint, ALL_BOOKS);
-    return data.viewer.books.hits;
+    return data?.viewer?.books?.hits ?? [];
   } catch (e) {
-    throw new Error("Erreur lors de la récupération des données" + e)
+    throw new Error(`Erreur lors du chargement des livres" ${e}`);
   }
 };
 
@@ -99,9 +110,9 @@ export const allChapters = async (id) => {
     const dataChapters = await request(endpoint, CHAPTERS, {
       bookId: idInt
     });
-    return dataChapters.viewer.chapters.hits;
+    return dataChapters?.viewer?.chapters?.hits ?? [];
   } catch (e) {
-    throw new Error("Erreur lors de la récupération des données" + e)
+    throw new Error(`Erreur lors du chargement des chapitres" ${e}`);
   }
 };
 
@@ -111,26 +122,35 @@ export const allLessons = async (id) => {
     const dataLessons = await request(endpoint, LESSONS, {
       chapterId: idInt
     });
-    return dataLessons.viewer.pages.hits;
+    return dataLessons?.viewer?.pages?.hits ?? [];
   } catch(e) {
-    throw new Error("Erreur lors du chargement des leçons" + e)
+    throw new Error(`Erreur lors du chargement des leçons" ${e}`);
   }
 };
 
 export const allLevels = async () => {
   try {
     const dataLevels = await request(endpoint, LEVELS);
-    return dataLevels.viewer.levels;
+    return dataLevels?.viewer?.levels ?? [];
   } catch (e) {
-    throw new Error("Erreur lors du chargement des niveaux" + e);
+    throw new Error(`Erreur lors du chargement des niveaux" ${e}`);
   }
 };
 
 export const allSchoolTypes = async () => {
   try {
     const dataSchool = await request(endpoint, SCHOOLTYPES);
-    return dataSchool.viewer.schoolTypes.hits;
+    return dataSchool?.viewer?.schoolTypes?.hits ?? [];
   } catch (e) {
-    throw new Error("Erreur lors du chargement des écoles" + e);
+    throw new Error(`Erreur lors du chargement des écoles" ${e}`);
+  }
+}
+
+export const allSubjects = async () => {
+  try {
+    const dataSubjects = await request(endpoint, SUBJECTS);
+    return dataSubjects?.viewer?.subjects?.hits ?? [];
+  } catch (e) {
+    throw new Error(`Erreur lors du chargement des sujets" ${e}`);
   }
 }
