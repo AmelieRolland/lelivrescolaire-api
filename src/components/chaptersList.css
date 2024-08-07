@@ -1,0 +1,38 @@
+h4{
+    font-weight: 600;
+    padding-top: 20px;
+}
+
+h3{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+stamp{
+    color:rgb(70, 113, 141);
+    font-size: large;
+    border: 2px, rgb(70, 113, 141), solid;
+    padding: 10px;
+    border-radius: 30px;
+    margin-top: 20px;
+    
+}
+
+h1{
+    padding-top: 20px;
+    font-size: 2em;
+    font-weight: 600;
+}
+
+a{
+    color: blue;
+}
+
+text{
+    font-family: 'Courier New', Courier, monospace;
+    padding-bottom: 20px;
+}
+
+header{
+    margin-bottom: 20px;
+}

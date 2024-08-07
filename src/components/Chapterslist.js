@@ -90,11 +90,10 @@ const Chapterslist = () => {
                         ))}
                     </div>
 
-                    <div className='w-3/5 p-6'>
+                    <div className='w-3/5 p-6 bg-white'>
                         {
                             selectedLesson ? (
                                 <div>
-                                    <h2>{selectedLesson.title}</h2>
                                     <div>
                                         {parse(selectedLesson.content)}
                                     </div>
