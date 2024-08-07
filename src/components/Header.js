@@ -6,12 +6,9 @@ const Header = ({ onSelectSubject }) => {
 
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
 
-
   const handleSubMenuToggle = () => {
     setIsSubMenuOpen(!isSubMenuOpen);
   };
-
-
 
   return (
 
@@ -32,7 +29,6 @@ const Header = ({ onSelectSubject }) => {
               <button onClick={handleSubMenuToggle} className="block py-2 px-3 text-black bg-blue-700 rounded md:bg-transparent md:text-black-700 md:p-0" aria-current="page"><strong>Nos manuels 👇</strong></button>
 
               <div className={`z-10 transition-max-height duration-500 ease-in-out nav-blue w-full p-4 absolute top-16 left-0 right-0 mx-auto border border-gray-100 rounded-lg shadow-lg ${isSubMenuOpen ? 'block' : 'hidden'}`}>
-
 
               <SubjectsList onSelectSubject={onSelectSubject} />
                 

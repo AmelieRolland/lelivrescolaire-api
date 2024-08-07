@@ -6,13 +6,10 @@ const genericImageUrl ='/img/book.png';
 
 const BookList = ({ selectedSubject }) => {
 
-    
-
     const { data: books, isLoading} = useQuery({
         queryKey: ['allBooks'],
         queryFn: allBooks,
     });
-
 
     const filteredBooks = selectedSubject ? books.filter((book) => 
     book.subjects.find((subject) => subject.name === selectedSubject )

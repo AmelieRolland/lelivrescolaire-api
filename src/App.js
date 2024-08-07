@@ -13,20 +13,17 @@ const App = () => {
 
   const handleSelectSubject = (subject) =>
     setSelectedSubject(subject);
-  console.log(selectedSubject);
-
 
   return (
 
-    <QueryClientProvider 
-    client={queryClient}>
-      
-    
+    <QueryClientProvider
+      client={queryClient}>
+
       <div className="App">
-        
-      <Header onSelectSubject={handleSelectSubject} />
-      <BookList selectedSubject={selectedSubject} />
-         
+
+        <Header onSelectSubject={handleSelectSubject} />
+        <BookList selectedSubject={selectedSubject} />
+
       </div>
     </QueryClientProvider>
   );
