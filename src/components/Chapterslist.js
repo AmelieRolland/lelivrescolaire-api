@@ -44,7 +44,7 @@ const Chapterslist = () => {
 
     if (isLoading) {
         return <p>En attente des manuels</p>
-    } else if (dataChapters === null || dataChapters.length === 0) {
+    } else if (dataChapters?.length === 0) {
         return <p>Oups! Aucuns chapitres disponibles pour le moment</p>
     }
 
