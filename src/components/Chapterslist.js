@@ -2,6 +2,7 @@ import { React, useEffect, useState, Image } from 'react';
 import { allChapters } from '../data/api';
 import { useParams } from 'react-router';
 import Header from './Header';
+import parse from 'html-react-parser';
 import './chaptersList.css'
 import 'flowbite';
 
@@ -94,6 +95,16 @@ const Chapterslist = () => {
                             selectedLesson ? (
                                 <div>
                                     <h2>{selectedLesson.title}</h2>
+                                    <div>
+                                        {selectedLesson.content}
+                                    </div>
+                                    <div>
+                                        {selectedLesson.children.map(doc => (
+                                            <div key={selectedLesson.id}>
+                                                {parse(doc.content)}
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             ) : <h2>Sélectionne une leçon!</h2>
                         }
