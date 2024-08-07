@@ -37,7 +37,9 @@ const CHAPTERS = gql`
                 pages{
                 title
                 content
-                children{content}
+                children{content
+                picture
+                metadata}
                 }
                 }
             }

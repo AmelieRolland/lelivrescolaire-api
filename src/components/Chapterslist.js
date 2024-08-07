@@ -96,12 +96,13 @@ const Chapterslist = () => {
                                 <div>
                                     <h2>{selectedLesson.title}</h2>
                                     <div>
-                                        {selectedLesson.content}
+                                        {parse(selectedLesson.content)}
                                     </div>
                                     <div>
                                         {selectedLesson.children.map(doc => (
                                             <div key={selectedLesson.id}>
                                                 {parse(doc.content)}
+                                                {doc.picture}
                                             </div>
                                         ))}
                                     </div>
