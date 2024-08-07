@@ -32,8 +32,6 @@ const Chapterslist = () => {
 
     }, [bookId])
 
-    console.log(dataChapters);
-
     const toggleChapter = (chapterId) => {
         setExpandedChapterId(expandedChapterId === chapterId ? null : chapterId);
     };
