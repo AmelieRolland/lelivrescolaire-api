@@ -34,7 +34,10 @@ const CHAPTERS = gql`
                 title 
                 urlLite 
                 valid
-                pages{title}
+                pages{
+                title
+                content
+                }
                 }
             }
         }
@@ -100,7 +103,7 @@ export const allBooks = async () => {
     const data = await request(endpoint, ALL_BOOKS);
     return data?.viewer?.books?.hits ?? [];
   } catch (e) {
-    throw new Error(`Erreur lors du chargement des livres" ${e}`);
+    throw new Error(`Erreur lors du chargement des livres ${e}`);
   }
 };
 
@@ -112,7 +115,7 @@ export const allChapters = async (id) => {
     });
     return dataChapters?.viewer?.chapters?.hits ?? [];
   } catch (e) {
-    throw new Error(`Erreur lors du chargement des chapitres" ${e}`);
+    throw new Error(`Erreur lors du chargement des chapitres ${e}`);
   }
 };
 
@@ -124,7 +127,7 @@ export const allLessons = async (id) => {
     });
     return dataLessons?.viewer?.pages?.hits ?? [];
   } catch(e) {
-    throw new Error(`Erreur lors du chargement des leçons" ${e}`);
+    throw new Error(`Erreur lors du chargement des leçons ${e}`);
   }
 };
 
@@ -133,7 +136,7 @@ export const allLevels = async () => {
     const dataLevels = await request(endpoint, LEVELS);
     return dataLevels?.viewer?.levels ?? [];
   } catch (e) {
-    throw new Error(`Erreur lors du chargement des niveaux" ${e}`);
+    throw new Error(`Erreur lors du chargement des niveaux ${e}`);
   }
 };
 
@@ -142,7 +145,7 @@ export const allSchoolTypes = async () => {
     const dataSchool = await request(endpoint, SCHOOLTYPES);
     return dataSchool?.viewer?.schoolTypes?.hits ?? [];
   } catch (e) {
-    throw new Error(`Erreur lors du chargement des écoles" ${e}`);
+    throw new Error(`Erreur lors du chargement des écoles ${e}`);
   }
 }
 
@@ -151,6 +154,6 @@ export const allSubjects = async () => {
     const dataSubjects = await request(endpoint, SUBJECTS);
     return dataSubjects?.viewer?.subjects?.hits ?? [];
   } catch (e) {
-    throw new Error(`Erreur lors du chargement des sujets" ${e}`);
+    throw new Error(`Erreur lors du chargement des sujets ${e}`);
   }
 }
