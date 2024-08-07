@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import SchoolTypesList from './SchoolTypesList';
 import SubjectsList from './SubjectsList';
 
-const Header = () => {
+const Header = ({ onSelectSubject }) => {
 
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
+
 
   const handleSubMenuToggle = () => {
     setIsSubMenuOpen(!isSubMenuOpen);
   };
+
 
 
   return (
@@ -32,7 +34,7 @@ const Header = () => {
               <div className={`z-10 transition-max-height duration-500 ease-in-out nav-blue w-full p-4 absolute top-16 left-0 right-0 mx-auto border border-gray-100 rounded-lg shadow-lg ${isSubMenuOpen ? 'block' : 'hidden'}`}>
 
 
-                  <SubjectsList />
+              <SubjectsList onSelectSubject={onSelectSubject} />
                 
               </div>
             </li>

@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { allSubjects } from '../data/api';
 import SchoolTypesList from './SchoolTypesList';
 
-const SubjectsList = () => {
+const SubjectsList = ({onSelectSubject}) => {
 
     const [selectedSchoolType, setSelectedSchoolType] = useState();
 
@@ -18,7 +18,7 @@ const SubjectsList = () => {
     const filteredSubjects = selectedSchoolType ? subjects.filter(
         (subject) =>
         (subject.schoolTypes.find((schoolType) => schoolType.includes(selectedSchoolType)) && (subject.hasBooks === true)
-    )) : subjects;
+        )) : subjects;
 
     if (isLoading) {
         return (
@@ -41,7 +41,9 @@ const SubjectsList = () => {
                 <div className="w-2/3 p-10">
                     <h3 className="text-lg pb-6">Matière</h3>
                     {filteredSubjects.map((subject) =>
-                        <p className='p-4'>{subject.name}</p>)}
+                        <button className='p-4 hover:bg-blue-200 hover:font-bold w-full rounded-lg text-left'
+                            onClick={() => onSelectSubject(subject.name)}
+                        >{subject.name}</button>)}
 
                 </div>
 
