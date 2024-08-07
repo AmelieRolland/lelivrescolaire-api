@@ -37,6 +37,7 @@ const CHAPTERS = gql`
                 pages{
                 title
                 content
+                children{content}
                 }
                 }
             }
@@ -76,7 +77,7 @@ const LESSONS = gql`
           hits{
             id
             title
-            content
+            contentMd
             chapter{id}
             }
         }
