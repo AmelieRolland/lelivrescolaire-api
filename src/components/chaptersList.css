@@ -1,21 +1,27 @@
 h4{
     font-weight: 600;
     padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 h3{
     padding-top: 20px;
     padding-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 1.3em;
 }
 
 stamp{
     color:rgb(70, 113, 141);
     font-size: large;
-    border: 2px, rgb(70, 113, 141), solid;
-    padding: 10px;
+    border: 4px, rgb(70, 113, 141), solid;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     border-radius: 30px;
-    margin-top: 20px;
-    
+    margin-right: 20px;    
 }
 
 h1{
@@ -35,10 +41,9 @@ text{
 
 header{
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
-img{
-    display: block;
-    width: full;
-
+.pageHeader{
+    background-color: #edfafe;
 }

@@ -46,6 +46,10 @@ const Chapterslist = () => {
             const props = attributesToProps(domNode.attribs);
             return <img {...props} />
         }
+        if (domNode.attribs && domNode.name === 'tip'){
+            const props = attributesToProps(domNode.attribs);
+            return <></>
+        }
     }
    }
    
@@ -103,7 +107,7 @@ const Chapterslist = () => {
                         {
                             selectedLesson ? (
                                 <div>
-                                    <div>
+                                    <div className='pageHeader p-6 mb-6'>
                                         {parse(selectedLesson.content)}
                                     </div>
                                     <div>
