@@ -39,12 +39,15 @@ const Chapterslist = () => {
     const handleSelectedLesson = (lesson) => {
         setSelectedLesson(lesson);
     };
+    console.log(dataChapters);
 
    const options = {
     replace(domNode) {
         if (domNode.attribs && domNode.name === 'picture') {
-            const props = attributesToProps(domNode.attribs);
-            return <img {...props} />
+            const caption = domNode?.firstChild?.next?.children[1]?.children[1]?.children[0]?.data ?? '';
+            const width = domNode?.lastChild?.attribs ?? 'width=100%';
+            const props = attributesToProps(domNode.attribs);           
+            return <><img {...props}{...width} /><figcaption>{caption}</figcaption></>
         }
         if (domNode.attribs && domNode.name === 'tip'){
             const props = attributesToProps(domNode.attribs);
@@ -68,7 +71,7 @@ const Chapterslist = () => {
 
                 <h1 className='permanent-marker text-3xl py-16'>Tous les chapitres</h1>
 
-                <div className='flex flex-row'>
+                <div className='flex flex-row flex-wrap'>
 
                     <div className=" w-2/5 pr-6">
 
