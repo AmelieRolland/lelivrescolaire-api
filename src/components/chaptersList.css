@@ -36,3 +36,9 @@ text{
 header{
     margin-bottom: 20px;
 }
+
+img{
+    display: block;
+    width: full;
+
+}

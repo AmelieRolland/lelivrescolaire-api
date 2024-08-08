@@ -2,9 +2,8 @@ import { React, useEffect, useState, Image } from 'react';
 import { allChapters } from '../data/api';
 import { useParams } from 'react-router';
 import Header from './Header';
-import parse from 'html-react-parser';
+import parse, { attributesToProps } from 'html-react-parser';
 import './chaptersList.css'
-import 'flowbite';
 
 
 const Chapterslist = () => {
@@ -40,6 +39,16 @@ const Chapterslist = () => {
     const handleSelectedLesson = (lesson) => {
         setSelectedLesson(lesson);
     };
+
+   const options = {
+    replace(domNode) {
+        if (domNode.attribs && domNode.name === 'picture') {
+            const props = attributesToProps(domNode.attribs);
+            return <img {...props} />
+        }
+    }
+   }
+   
 
     if (isLoading) {
         return <p>En attente des manuels</p>
@@ -98,10 +107,9 @@ const Chapterslist = () => {
                                         {parse(selectedLesson.content)}
                                     </div>
                                     <div>
-                                        {selectedLesson.children.map(doc => (
+                                        {selectedLesson.children.sort((a, b) => a.id - b.id).map(doc => (
                                             <div key={selectedLesson.id}>
-                                                {parse(doc.content)}
-                                                {doc.picture}
+                                                {parse(doc.content, options)}
                                             </div>
                                         ))}
                                     </div>
