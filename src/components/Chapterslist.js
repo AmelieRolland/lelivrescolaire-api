@@ -39,7 +39,6 @@ const Chapterslist = () => {
     const handleSelectedLesson = (lesson) => {
         setSelectedLesson(lesson);
     };
-    console.log(dataChapters);
 
    const options = {
     replace(domNode) {
@@ -56,7 +55,6 @@ const Chapterslist = () => {
     }
    }
    
-
     if (isLoading) {
         return <p>En attente des manuels</p>
     } else if (dataChapters?.length === 0) {
