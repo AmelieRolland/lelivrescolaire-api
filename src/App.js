@@ -12,10 +12,13 @@ const queryClient = new QueryClient();
 const App = () => {
 
   const { subjectId } = useParams();
-
-  console.log(subjectId);
-
   const [selectedSubject, setSelectedSubject] = useState(subjectId);
+  const [selectedSchoolType, setSelectedSchoolType] = useState();
+
+  
+
+
+  console.log(selectedSubject);
 
   return (
 
@@ -24,8 +27,8 @@ const App = () => {
 
       <div className="App">
 
-        <Header setSelectedSubject={setSelectedSubject} />
-        <BookList selectedSubject={selectedSubject} />
+        <Header setSelectedSubject={setSelectedSubject} setSelectedSchoolType={setSelectedSchoolType} selectedSchoolType={selectedSchoolType} />
+        <BookList selectedSubject={selectedSubject} selectedSchoolType={selectedSchoolType}/>
 
       </div>
     </QueryClientProvider>

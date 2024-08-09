@@ -4,7 +4,7 @@ import { allBooks } from '../data/api';
 
 const genericImageUrl ='/img/book.png';
 
-const BookList = ({ selectedSubject }) => {
+const BookList = ({ selectedSubject , selectedSchoolType }) => {
 
     const { data: books, isLoading, refetch} = useQuery({
         queryKey: ['allBooks'],
@@ -15,12 +15,18 @@ const BookList = ({ selectedSubject }) => {
 
     useEffect(() => {
         refetch();
-    }, [selectedSubject])
+    }, [selectedSubject, selectedSchoolType])
+
+    console.log(selectedSubject);
+    console.log(selectedSchoolType);
+    
 
     const filteredBooks = selectedSubject ? books?.filter((book) => 
-    book.subjects.find((subject) => subject.name === selectedSubject )
-) : books;
+    book.subjects.find((subject) => (subject.name === selectedSubject)
+    //  && (subject.schoolTypes.includes(selectedSchoolType))
+)) : books;
 
+    console.log(filteredBooks);
     if (isLoading) {
         return (
             <p>En attente du chargement</p>

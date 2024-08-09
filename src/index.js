@@ -21,7 +21,6 @@ const router = createBrowserRouter(
     element: <App  />,
   },
   {
-    
     path: "/:subjectId",
     element: <App />
   },

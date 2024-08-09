@@ -4,24 +4,22 @@ import { allSubjects } from '../data/api';
 import SchoolTypesList from './SchoolTypesList';
 import { redirect, useNavigate } from 'react-router';
 
-const SubjectsList = ({setSelectedSubject}) => {
+const SubjectsList = ({setSelectedSubject, setSelectedSchoolType, selectedSchoolType}) => {
 
     const navigate = useNavigate();
 
-    const [selectedSchoolType, setSelectedSchoolType] = useState();
 
     const { data: subjects, isLoading } = useQuery({
         queryKey: ['allSubjects'],
         queryFn: allSubjects
     });
 
-    const handleSelectSchoolType = (schoolType) =>
-        setSelectedSchoolType(schoolType);
-
-    const filteredSubjects = selectedSchoolType ? subjects.filter(
+    console.log(setSelectedSchoolType);
+    const filteredSubjects = selectedSchoolType ? subjects?.filter(
         (subject) =>
         (subject.schoolTypes.find((schoolType) => schoolType.includes(selectedSchoolType)) && (subject.hasBooks === true)
         )) : subjects;
+
     
 
     if (isLoading) {
@@ -40,7 +38,7 @@ const SubjectsList = ({setSelectedSubject}) => {
             <div className="flex">
                 <div className="w-1/3 p-10 border-r">
                     <h3 className="text-lg pb-6 ">Niveau</h3>
-                    <SchoolTypesList onSelectSchoolType={handleSelectSchoolType} />
+                    <SchoolTypesList setSelectSchoolType={setSelectedSchoolType} />
                 </div>
                 <div className="w-2/3 p-10">
                     <h3 className="text-lg pb-6">Matière</h3>
