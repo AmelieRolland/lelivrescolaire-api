@@ -34,6 +34,7 @@ const CHAPTERS = gql`
                 title 
                 urlLite 
                 valid
+                number
                 pages{
                 title
                 content

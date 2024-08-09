@@ -26,8 +26,7 @@ const BookList = ({ selectedSubject , selectedSchoolType }) => {
     //  && (subject.schoolTypes.includes(selectedSchoolType))
 )) : books;
 
-    console.log(filteredBooks);
-    if (isLoading) {
+if (isLoading) {
         return (
             <p>En attente du chargement</p>
         );

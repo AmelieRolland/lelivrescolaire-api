@@ -92,7 +92,7 @@ const Chapterslist = () => {
 
 
 
-                            {dataChapters.map(chapter => (
+                            {dataChapters.sort((a,b)=> a.number - b.number).map(chapter => (
 
 
                                 <div key={chapter.id} id="accordion" className='overflow-scroll'>
@@ -102,6 +102,7 @@ const Chapterslist = () => {
                                             aria-expanded={expandedChapterId === chapter.id}
                                             aria-controls={`accordion-body-${chapter.id}`}>
                                             <span class="flex items-center"><strong>{chapter.title}</strong></span>
+                                            <span className='text-xs'><i> Ch.{chapter.number}</i></span>
 
                                         </button>
                                     </h2>
