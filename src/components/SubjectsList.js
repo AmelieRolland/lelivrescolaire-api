@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { allSubjects } from '../data/api';
 import SchoolTypesList from './SchoolTypesList';
+import { redirect, useNavigate } from 'react-router';
 
-const SubjectsList = ({onSelectSubject}) => {
+const SubjectsList = ({setSelectedSubject}) => {
+
+    const navigate = useNavigate();
 
     const [selectedSchoolType, setSelectedSchoolType] = useState();
 
@@ -19,6 +22,7 @@ const SubjectsList = ({onSelectSubject}) => {
         (subject) =>
         (subject.schoolTypes.find((schoolType) => schoolType.includes(selectedSchoolType)) && (subject.hasBooks === true)
         )) : subjects;
+    
 
     if (isLoading) {
         return (
@@ -42,7 +46,9 @@ const SubjectsList = ({onSelectSubject}) => {
                     <h3 className="text-lg pb-6">Matière</h3>
                     {filteredSubjects.map((subject) =>
                         <button className='p-4 hover:bg-blue-200 hover:font-bold w-full rounded-lg text-left'
-                            onClick={() => onSelectSubject(subject.name)}
+                            onClick={() => { setSelectedSubject(subject.name); navigate(`/${subject.name}`)
+                        }}
+                            
                         >{subject.name}</button>)}
 
                 </div>

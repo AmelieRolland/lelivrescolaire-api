@@ -3,16 +3,19 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import BookList from './components/Booklist.js';
 import Header from './components/Header.js';
 import 'flowbite';
+import { onSelectSubject } from './utils/onSelectSubject.js';
+import { useParams } from 'react-router';
 
 
 const queryClient = new QueryClient();
 
 const App = () => {
 
-  const [selectedSubject, setSelectedSubject] = useState();
+  const { subjectId } = useParams();
 
-  const handleSelectSubject = (subject) =>
-    setSelectedSubject(subject);
+  console.log(subjectId);
+
+  const [selectedSubject, setSelectedSubject] = useState(subjectId);
 
   return (
 
@@ -21,7 +24,7 @@ const App = () => {
 
       <div className="App">
 
-        <Header onSelectSubject={handleSelectSubject} />
+        <Header setSelectedSubject={setSelectedSubject} />
         <BookList selectedSubject={selectedSubject} />
 
       </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { allBooks } from '../data/api';
 
@@ -6,12 +6,18 @@ const genericImageUrl ='/img/book.png';
 
 const BookList = ({ selectedSubject }) => {
 
-    const { data: books, isLoading} = useQuery({
+    const { data: books, isLoading, refetch} = useQuery({
         queryKey: ['allBooks'],
         queryFn: allBooks,
     });
 
-    const filteredBooks = selectedSubject ? books.filter((book) => 
+    console.log('to');
+
+    useEffect(() => {
+        refetch();
+    }, [selectedSubject])
+
+    const filteredBooks = selectedSubject ? books?.filter((book) => 
     book.subjects.find((subject) => subject.name === selectedSubject )
 ) : books;
 
@@ -28,7 +34,7 @@ const BookList = ({ selectedSubject }) => {
     return (
         <>
             <div className='container mx-auto px-4'>
-                <h1 className='permanent-marker text-3xl py-16'>Nos ouvrages  :</h1>
+                <h1 className='permanent-marker text-black text-3xl pt-32 pb-16'>Nos ouvrages {selectedSubject ? <span className='strong'>{selectedSubject}</span> : ''}:</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredBooks.map((book) => (
                         <div key={book.id} className={"group flex flex-row transition duration-700 ease-in-out max-w-full h-auto border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700" + (book.valid === true ? ' bg-white' : ' hidden')}>
@@ -42,7 +48,7 @@ const BookList = ({ selectedSubject }) => {
                                     </a>
                                 </div>
                                 <div className='mt-2'>
-                                    <a href={`/book/${book.id}`} title='découvrir le livre' className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-[#ffa800] rounded-lg hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    <a href={`/book/${book.id}`} title='découvrir le livre' className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-[#ffa800] rounded-lg hover:bg-[#e69a01] focus:outline-none">
                                         Ouvrir
                                         <svg className="rtl:rotate-180 w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
