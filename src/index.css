@@ -23,7 +23,6 @@ code {
   font-family: "Permanent Marker", cursive;
   font-weight: 400;
   font-style: normal;
-  color: rgb(94, 212, 247);
 }
 
 .nav-blue{
@@ -45,4 +44,20 @@ p, li{
   font-family: "Lato", sans-serif;
   font-weight: 400;
   font-style: normal;
+}
+
+.strong {
+  position: relative;
+
+}
+.strong::before {
+  background-color: #e69a01;
+  content: "";
+  position: absolute;
+  width: calc(100% + 4px);
+  height: 40%;
+  bottom: 0;
+  z-index: -1;
+  transform: rotate(-6deg);
+  padding-left: 30px;
 }

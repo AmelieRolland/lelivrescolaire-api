@@ -21,7 +21,9 @@ stamp{
     padding-left: 20px;
     padding-right: 20px;
     border-radius: 30px;
-    margin-right: 20px;    
+    margin-right: 20px;  
+    margin-top: 50px;
+    margin-bottom: 20px;  
 }
 
 h1{
@@ -47,4 +49,60 @@ header{
 .pageHeader{
     background-color: #edfafe;
 }
+center{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+figcaption{
+    text-align: left;
+}
+
+#text{
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.side{
+    position: fixed;
+    overflow-y: scroll;
+    top:100px;
+    bottom:30px;
+    width: 400px;
+}
+
+a stamp{
+    border: none;
+}
+
+.page{
+    min-height: 80vh;
+}
+.page h2{
+    text-align: center;
+    font-family:"Permanent Marker", cursive;
+    font-size: 30px;
+}
+
+.page img{
+    transition: all 0.4 ease-in-out;
+}
+/* .strong {
+    position: relative;
+
+}
+.strong::before {
+    background-color: #e69a01;
+    content: "";
+    position: absolute;
+    width: calc(100% + 4px);
+    height: 40%;
+    bottom: 0;
+    z-index: -1;
+    transform: rotate(-6deg);
+    padding-left: 30px;
+  } */
+
 

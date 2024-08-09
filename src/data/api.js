@@ -104,6 +104,7 @@ const LESSONS = gql`
 export const allBooks = async () => {
   try {
     const data = await request(endpoint, ALL_BOOKS);
+    console.log(data);
     return data?.viewer?.books?.hits ?? [];
   } catch (e) {
     throw new Error(`Erreur lors du chargement des livres ${e}`);

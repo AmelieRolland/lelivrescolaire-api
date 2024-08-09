@@ -13,6 +13,8 @@ const Chapterslist = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [expandedChapterId, setExpandedChapterId] = useState(null);
     const [selectedLesson, setSelectedLesson] = useState();
+    const [selectedSubject, setSelectedSubject] = useState();
+
 
     const fetchChapters = async () => {
         setIsLoading(true)
@@ -40,21 +42,34 @@ const Chapterslist = () => {
         setSelectedLesson(lesson);
     };
 
-   const options = {
-    replace(domNode) {
-        if (domNode.attribs && domNode.name === 'picture') {
-            const caption = domNode?.firstChild?.next?.children[1]?.children[1]?.children[0]?.data ?? '';
-            const width = domNode?.lastChild?.attribs ?? 'width=100%';
-            const props = attributesToProps(domNode.attribs);           
-            return <><img {...props}{...width} /><figcaption>{caption}</figcaption></>
-        }
-        if (domNode.attribs && domNode.name === 'tip'){
-            const props = attributesToProps(domNode.attribs);
-            return <></>
+    const options = {
+        replace(domNode) {
+            if (domNode.attribs && domNode.name === 'picture') {
+                const caption = domNode?.firstChild?.next?.children[1]?.children[1]?.children[0]?.data;
+                const width = domNode?.lastChild?.attribs ?? 'width=100%';
+                const props = attributesToProps(domNode.attribs);
+                return <><img {...props}{...width} /><figcaption>{caption ?? `Crédits: ${caption}`}</figcaption></>
+            }
+            if (domNode.attribs && domNode.name === 'tip') {
+                const props = attributesToProps(domNode.attribs);
+                return <></>
+            }
+            if (domNode.attribs && domNode.name === 'stamp') {
+                console.log(domNode.attribs.icon)
+                if (domNode.attribs.icon === 'hand') {
+                    return <stamp>👋</stamp>
+                }
+
+
+
+
+
+            }
         }
     }
-   }
-   
+
+    console.dir(dataChapters);
+
     if (isLoading) {
         return <p>En attente des manuels</p>
     } else if (dataChapters?.length === 0) {
@@ -63,51 +78,58 @@ const Chapterslist = () => {
 
     return (
         <>
-            <Header />
+            <Header setSelectedSubject={setSelectedSubject} />
 
-            <div className='container mx-12'>
+            <div className='mx-12'>
 
-                <h1 className='permanent-marker text-3xl py-16'>Tous les chapitres</h1>
 
                 <div className='flex flex-row flex-wrap'>
 
-                    <div className=" w-2/5 pr-6">
+                    <div className=" w-2/6 pr-6">
+                        <div className='side'>
+                            <a href="/"> Retour aux livres </a>
+                            <h1 className='permanent-marker text-3xl pb-16'>Tous les chapitres</h1>
 
-                        {dataChapters.map(chapter => (
 
-                            <div key={chapter.id} id="accordion" >
-                                <h2 id="accordion-header">
-                                    <button type="button" class="flex items-center  justify-between p-5 w-full font-medium text-left border border-gray-200  border-b-0 text-gray-900 dark:text-white bg-white d hover:bg-blue-300 focus:bg-blue-100 rounded-t-xl"
-                                        onClick={() => toggleChapter(chapter.id)}
-                                        aria-expanded={expandedChapterId === chapter.id}
-                                        aria-controls={`accordion-body-${chapter.id}`}>
-                                        <span class="flex items-center"><strong>{chapter.title}</strong></span>
 
-                                    </button>
-                                </h2>
-                                <div id={`accordion-body-${chapter.id}`}
-                                    aria-labelledby={`accordion-header-${chapter.id}`}
-                                    className={`transition-max-height duration-500 ease-in-out overflow-hidden ${expandedChapterId === chapter.id ? 'max-h-screen' : 'max-h-0'}`}>
+                            {dataChapters.map(chapter => (
 
-                                    <div class="bg-blue-100 border border-gray-200  border-b-0">
-                                        {chapter.pages.map(lesson => (
-                                            <button
-                                                onClick={() => handleSelectedLesson(lesson)}
-                                                type='button' className='ps-5 py-2.5 bg-blue-100 w-full text-left'>{lesson.title}</button>
-                                        ))}
+
+                                <div key={chapter.id} id="accordion" className='overflow-scroll'>
+                                    <h2 id="accordion-header">
+                                        <button type="button" className="flex items-center  justify-between p-5 w-full font-medium text-left border border-gray-200  border-b-0 text-gray-900 dark:text-white bg-white d hover:bg-blue-300 focus:bg-blue-100 rounded-t-xl"
+                                            onClick={() => toggleChapter(chapter.id)}
+                                            aria-expanded={expandedChapterId === chapter.id}
+                                            aria-controls={`accordion-body-${chapter.id}`}>
+                                            <span class="flex items-center"><strong>{chapter.title}</strong></span>
+
+                                        </button>
+                                    </h2>
+                                    <div id={`accordion-body-${chapter.id}`}
+                                        aria-labelledby={`accordion-header-${chapter.id}`}
+                                        className={`transition-max-height duration-500 ease-in-out overflow-scroll ${expandedChapterId === chapter.id ? 'max-h-screen' : 'max-h-0'}`}>
+
+                                        <div class="bg-blue-100 border border-gray-200  border-b-0">
+                                            {chapter.pages.map(lesson => (
+                                                <button
+                                                    onClick={() => handleSelectedLesson(lesson)}
+                                                    type='button' className='ps-5 py-2.5 hover:bg-blue-300 focus:bg-blue-300 bg-blue-100 w-full text-left'>{lesson.title}</button>
+                                            ))}
+
+                                        </div>
 
                                     </div>
 
                                 </div>
+                            ))}
+                        </div>
 
-                            </div>
-                        ))}
                     </div>
 
-                    <div className='w-3/5 p-6 bg-white'>
+                    <div className='page w-4/6 p-6 bg-white relative overflow-visible mt-24'>
                         {
                             selectedLesson ? (
-                                <div>
+                                <div className='overflow-scroll relative'>
                                     <div className='pageHeader p-6 mb-6'>
                                         {parse(selectedLesson.content)}
                                     </div>
@@ -119,7 +141,10 @@ const Chapterslist = () => {
                                         ))}
                                     </div>
                                 </div>
-                            ) : <h2>Sélectionne une leçon!</h2>
+                            ) : <div className='flex flex-col justify-center'>
+                                    <h2 className='pt-16'>Sélectionne une <span className='strong z-10'>leçon!</span></h2>
+                                    <img src='/img/book.png' className='w-2/3 mx-auto pt-16'></img>
+                                </div>
                         }
                     </div>
 

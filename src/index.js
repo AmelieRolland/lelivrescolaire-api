@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
@@ -11,19 +11,25 @@ import Chapters from './components/Chapters';
 import Lessons from './components/LessonsList';
 import 'flowbite';
 
-const router = createBrowserRouter([
+
+
+const router = createBrowserRouter(
+  [
+  
   {
     path: "/",
-    element: <App />,
+    element: <App  />,
+  },
+  {
+    
+    path: "/:subjectId",
+    element: <App />
   },
   {
     path: "book/:bookId",
     element: <Chapters />,
   },
-  {
-    path: "chapitres/:chapterId",
-    element: <Lessons />,
-  },
+
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
