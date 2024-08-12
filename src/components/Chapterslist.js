@@ -127,8 +127,8 @@ const Chapterslist = () => {
                                                         <button
                                                             onClick={() => handleSelectedLesson(lesson)}
                                                             type='button' className='flex items-center  justify-between p-5 py-2.5 hover:bg-blue-300 focus:bg-blue-300 bg-blue-100 w-full text-left'>
-                                                                <span class="flex items-center">{lesson.title}</span>
-                                                                <span className='text-xs ps-4'>p.{lesson.page}</span>
+                                                                <span class="pe-6 flex items-center">{lesson.title}</span>
+                                                                <span className='text-xs ps-6'>p.{lesson.page} - {lesson.nbPages + lesson.page}</span>
                                                         
                                                         </button>
                                                     ))}
