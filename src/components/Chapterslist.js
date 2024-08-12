@@ -38,6 +38,21 @@ const Chapterslist = () => {
         setExpandedChapterId(expandedChapterId === chapterId ? null : chapterId);
     };
 
+
+    const groupChaptersByTheme = (chapters) => {
+        const groupedChapters = {};
+        chapters.forEach((chapter) => {
+            const theme = chapter.theme || [];
+            if (!groupedChapters[theme]) {
+                groupedChapters[theme] = [];
+            }
+            groupedChapters[theme].push(chapter);
+        });
+        return groupedChapters;
+    };
+
+    const chaptersByTheme = groupChaptersByTheme(dataChapters);
+
     const handleSelectedLesson = (lesson) => {
         setSelectedLesson(lesson);
     };
@@ -84,35 +99,48 @@ const Chapterslist = () => {
                             <a href="/"> Retour aux livres </a>
                             <h1 className='permanent-marker text-3xl pb-16'>Tous les chapitres</h1>
 
-                            {dataChapters.sort((a,b)=> a.number - b.number).map(chapter => (
+                            {Object?.keys(chaptersByTheme).map((theme) => (
+                                <div key={theme}>
 
-                                <div key={chapter.id} id="accordion" className='overflow-scroll'>
-                                    <h2 id="accordion-header">
-                                        <button type="button" className="flex items-center  justify-between p-5 w-full font-medium text-left border border-gray-200  border-b-0 text-gray-900 dark:text-white bg-white d hover:bg-blue-300 focus:bg-blue-100 rounded-t-xl"
-                                            onClick={() => toggleChapter(chapter.id)}
-                                            aria-expanded={expandedChapterId === chapter.id}
-                                            aria-controls={`accordion-body-${chapter.id}`}>
-                                            <span class="flex items-center"><strong>{chapter.title}</strong></span>
-                                            <span className='text-xs ps-4'><i> Ch.{chapter.number}</i></span>
+                                    <button className="flex items-center  justify-between p-5 w-full font-medium text-left border border-gray-200  border-b-0 text-gray-900 dark:text-white bg-white d hover:bg-blue-300 focus:bg-blue-100 rounded-t-xl">
+                                        <h2 className='uppercase text-blue-300'>{theme ?? `Thème ${theme}`}</h2>
+                                    </button>
+                                    {chaptersByTheme[theme].sort((a, b) => a.number - b.number).map(chapter => (
 
-                                        </button>
-                                    </h2>
-                                    <div id={`accordion-body-${chapter.id}`}
-                                        aria-labelledby={`accordion-header-${chapter.id}`}
-                                        className={`transition-max-height duration-500 ease-in-out overflow-scroll ${expandedChapterId === chapter.id ? 'max-h-screen' : 'max-h-0'}`}>
+                                        <div key={chapter.id} id="accordion" className='overflow-scroll'>
+                                            <h2 id="accordion-header">
+                                                <button type="button" className="flex items-center  justify-between p-5 w-full font-medium text-left border border-gray-200  border-b-0 text-gray-900 dark:text-white bg-white d hover:bg-blue-300 focus:bg-blue-100 rounded-t-xl"
+                                                    onClick={() => toggleChapter(chapter.id)}
+                                                    aria-expanded={expandedChapterId === chapter.id}
+                                                    aria-controls={`accordion-body-${chapter.id}`}>
+                                                    <span class="flex items-center"><strong>{chapter.title}</strong></span>
+                                                    <span className='text-xs ps-4'><i> Ch.{chapter.number}</i></span>
 
-                                        <div class="bg-blue-100 border border-gray-200  border-b-0">
-                                            {chapter.pages.map(lesson => (
-                                                <button
-                                                    onClick={() => handleSelectedLesson(lesson)}
-                                                    type='button' className='ps-5 py-2.5 hover:bg-blue-300 focus:bg-blue-300 bg-blue-100 w-full text-left'>{lesson.title}</button>
-                                            ))}
+                                                </button>
+                                            </h2>
+                                            <div id={`accordion-body-${chapter.id}`}
+                                                aria-labelledby={`accordion-header-${chapter.id}`}
+                                                className={`transition-max-height duration-500 ease-in-out overflow-scroll ${expandedChapterId === chapter.id ? 'max-h-screen' : 'max-h-0'}`}>
+
+                                                <div class="bg-blue-100 border border-gray-200  border-b-0">
+                                                    {chapter.pages.sort((a, b) => a.page - b.page).map(lesson => (
+                                                        <button
+                                                            onClick={() => handleSelectedLesson(lesson)}
+                                                            type='button' className='flex items-center  justify-between p-5 py-2.5 hover:bg-blue-300 focus:bg-blue-300 bg-blue-100 w-full text-left'>
+                                                                <span class="flex items-center">{lesson.title}</span>
+                                                                <span className='text-xs ps-4'>p.{lesson.page}</span>
+                                                        
+                                                        </button>
+                                                    ))}
+
+                                                </div>
+
+                                            </div>
 
                                         </div>
-
-                                    </div>
-
+                                    ))}
                                 </div>
+
                             ))}
                         </div>
 
@@ -134,9 +162,9 @@ const Chapterslist = () => {
                                     </div>
                                 </div>
                             ) : <div className='flex flex-col justify-center'>
-                                    <h2 className='pt-16'>Sélectionne une <span className='strong z-10'>leçon!</span></h2>
-                                    <img src='/img/book.png' className='w-2/3 mx-auto pt-16'></img>
-                                </div>
+                                <h2 className='pt-16'>Sélectionne une <span className='strong z-10'>leçon!</span></h2>
+                                <img src='/img/book.png' className='w-2/3 mx-auto pt-16'></img>
+                            </div>
                         }
                     </div>
 

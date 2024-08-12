@@ -14,7 +14,6 @@ const SubjectsList = ({setSelectedSubject, setSelectedSchoolType, selectedSchool
         queryFn: allSubjects
     });
 
-    console.log(setSelectedSchoolType);
     const filteredSubjects = selectedSchoolType ? subjects?.filter(
         (subject) =>
         (subject.schoolTypes.find((schoolType) => schoolType.includes(selectedSchoolType) && (subject.hasBooks === true)) 

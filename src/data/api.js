@@ -35,12 +35,13 @@ const CHAPTERS = gql`
                 urlLite 
                 valid
                 number
+                theme
                 pages{
+                page
+                nbPages
                 title
                 content
-                children{content
-                picture
-                metadata}
+                children{content}
                 }
                 }
             }
