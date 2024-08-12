@@ -25,7 +25,7 @@ const BookList = ({ selectedSubject , selectedSchoolType }) => {
     book.subjects.find((subject) => (subject.name === selectedSubject) && (subject.schoolTypes.includes(selectedSchoolType)) 
 )) : books;
 
-// console.log(filteredBooks[0]?.subjects?.schoolTypes);
+console.log(filteredBooks);
 
 if (isLoading) {
         return (
