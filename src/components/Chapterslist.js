@@ -102,7 +102,7 @@ const Chapterslist = () => {
                                             aria-expanded={expandedChapterId === chapter.id}
                                             aria-controls={`accordion-body-${chapter.id}`}>
                                             <span class="flex items-center"><strong>{chapter.title}</strong></span>
-                                            <span className='text-xs'><i> Ch.{chapter.number}</i></span>
+                                            <span className='text-xs ps-4'><i> Ch.{chapter.number}</i></span>
 
                                         </button>
                                     </h2>
