@@ -59,11 +59,6 @@ const Chapterslist = () => {
                 if (domNode.attribs.icon === 'hand') {
                     return <stamp>👋</stamp>
                 }
-
-
-
-
-
             }
         }
     }
@@ -82,7 +77,6 @@ const Chapterslist = () => {
 
             <div className='mx-12'>
 
-
                 <div className='flex flex-row flex-wrap'>
 
                     <div className=" w-2/6 pr-6">
@@ -90,10 +84,7 @@ const Chapterslist = () => {
                             <a href="/"> Retour aux livres </a>
                             <h1 className='permanent-marker text-3xl pb-16'>Tous les chapitres</h1>
 
-
-
                             {dataChapters.sort((a,b)=> a.number - b.number).map(chapter => (
-
 
                                 <div key={chapter.id} id="accordion" className='overflow-scroll'>
                                     <h2 id="accordion-header">

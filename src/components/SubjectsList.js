@@ -4,7 +4,7 @@ import { allSubjects } from '../data/api';
 import SchoolTypesList from './SchoolTypesList';
 import { redirect, useNavigate } from 'react-router';
 
-const SubjectsList = ({setSelectedSubject, setSelectedSchoolType, selectedSchoolType}) => {
+const SubjectsList = ({setSelectedSubject, setSelectedSchoolType, selectedSchoolType, setIsSubMenuOpen}) => {
 
     const navigate = useNavigate();
 
@@ -44,7 +44,8 @@ const SubjectsList = ({setSelectedSubject, setSelectedSchoolType, selectedSchool
                     <h3 className="text-lg pb-6">Matière</h3>
                     {filteredSubjects.map((subject) =>
                         <button className='p-4 hover:bg-blue-200 hover:font-bold w-full rounded-lg text-left'
-                            onClick={() => { setSelectedSubject(subject.name); navigate(`/${subject.name}`)
+                            onClick={() => { setSelectedSubject(subject.name); navigate(`/${subject.name}`);
+                            setIsSubMenuOpen(false);
                         }}
                             
                         >{subject.name}</button>)}

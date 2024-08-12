@@ -22,9 +22,10 @@ const BookList = ({ selectedSubject , selectedSchoolType }) => {
     
 
     const filteredBooks = selectedSubject ? books?.filter((book) => 
-    book.subjects.find((subject) => (subject.name === selectedSubject)
-    //  && (subject.schoolTypes.includes(selectedSchoolType))
+    book.subjects.find((subject) => (subject.name === selectedSubject) && (subject.schoolTypes.includes(selectedSchoolType)) 
 )) : books;
+
+// console.log(filteredBooks[0]?.subjects?.schoolTypes);
 
 if (isLoading) {
         return (
