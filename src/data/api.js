@@ -17,6 +17,10 @@ const ALL_BOOKS = gql`
           }
           levels {
             name
+            isHighSchool
+            isMiddleSchool
+            isElementarySchool
+            isProHighSchool
           }
           valid
         }
@@ -69,6 +73,9 @@ const LEVELS = gql`
           name
           isElementarySchool
           isPreSchool
+          isHighSchool
+          isMiddleSchool
+          isProHighSchool
         }
       }
     }
