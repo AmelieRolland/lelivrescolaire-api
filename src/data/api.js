@@ -72,6 +72,9 @@ const LEVELS = gql`
           name
           isElementarySchool
           isPreSchool
+          isHighSchool
+          isMiddleSchool
+          isProHighSchool
         }
       }
     }
